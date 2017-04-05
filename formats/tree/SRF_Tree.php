@@ -114,7 +114,7 @@ class SRFTree extends SMWListResultPrinter {
 						$hash = null;
 					} else {
 
-						$element = clone $element;
+						$element = $this->cloneRec( $element );
 						$tree[] = $element;
 					}
 
@@ -173,6 +173,14 @@ class SRFTree extends SMWListResultPrinter {
 		return $result;
 	}
 
+	protected function cloneRec( &$elt ) {
+		$result = clone elt;
+		//for($elt->mChildren[] as $child) {
+		//	$result->mChildren[] = $this->cloneRec($child);
+		//} TODO: to fix in order to clone children
+		return $result;
+	}
+	
 	protected function printElement( &$result, SRFTreeElement &$element, &$rownum, $level = 1 ) {
 
 		$rownum++;
